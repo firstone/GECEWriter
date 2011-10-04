@@ -107,6 +107,7 @@ namespace ESoft {
     private:
       Light(bool skip) : data_(0), skip_(skip) {}
     
+      uint8_t track_;
       union {
         uint32_t data_;
         struct {
@@ -115,7 +116,6 @@ namespace ESoft {
           uint32_t blue_ : 4;
           uint32_t bright_ : 8;
           uint32_t addr_ : 6;
-          uint32_t track_ : 4;
           uint32_t skip_ : 1;
         };
         struct {
