@@ -9,6 +9,7 @@
  *  Revision History:
  *  
  *  NNN - MMM YY - Name - Change
+ *  001 - Nov 11 - firstone - Added reverse address assignment and bad pixel exception
  *  
  *  Copyright (C) 2011, Erissoft
  *  
@@ -35,7 +36,9 @@ namespace ESoft {
   
   namespace GECEWriter {
 
-    void Writer::initialize(uint8_t track, uint8_t lightCount, uint8_t brightness, bool visual) {
+    void Writer::initialize(uint8_t track, uint8_t lightCount, uint8_t brightness, 
+        bool visual /* = false */, bool reverse /* = false */, uint8_t badPixel /* = 255 */) {
+
       uint8_t tracks[] = { track };
 
       Writer writer(1, tracks);
@@ -44,17 +47,26 @@ namespace ESoft {
       lights[0].setBrightness(brightness).setTrack(track);
       if (visual) {
         lights[0].setColor(Color::WHITE);
-        for (int i = 0; i < lightCount; i++) {
-          lights[0].setAddr(i);
-          writer.write(1, lights);
-        }
+        writeAll_(writer, lights, lightCount, reverse, badPixel);
       }
 
       lights[0].setColor(Color::BLACK);
+      writeAll_(writer, lights, lightCount, reverse, badPixel);
+
+    }
+
+    void Writer::writeAll_(Writer &writer, Light lights[], uint8_t lightCount, 
+      bool reverse, uint8_t badPixel) {
+
+      uint8_t curAddr = 0;
       for (int i = 0; i < lightCount; i++) {
-        lights[0].setAddr(i);
+        if (i == badPixel)
+          lights[0].setAddr(lightCount);
+        else	
+          lights[0].setAddr(reverse ? lightCount - 1 - curAddr++ : curAddr++);
+
         writer.write(1, lights);
-      }  
+      }
     }
     
   }

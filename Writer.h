@@ -9,6 +9,7 @@
  *  Revision History:
  *  
  *  NNN - MMM YY - Name - Change
+ *  001 - Nov 11 - firstone - Added reverse address assignment and bad pixel exception
  *  
  *  Copyright (C) 2011, Erissoft
  *  
@@ -52,7 +53,7 @@ namespace ESoft {
 
       static const uint8_t PORT_PIN_COUNT = 8;
 
-      Writer(uint8_t lineCount, uint8_t lines[]) {
+      Writer(uint8_t lineCount, const uint8_t lines[]) {
       
         out_ = portOutputRegister(getPort(lines[0]));
 
@@ -67,13 +68,16 @@ namespace ESoft {
       void write(uint8_t lightCount, Light lights[]);
 
       static void initialize(uint8_t track, uint8_t lightCount, uint8_t brightness, 
-        bool visual = false);
+        bool visual = false, bool reverse = false, uint8_t badPixel = 255);
 
       static uint8_t getPort(int track) { return digitalPinToPort(track); }
  
     private:
       void delay5_();
       void delay4_();
+
+      static void writeAll_(Writer &writer, Light lights[], uint8_t lightCount, 
+        bool reverse, uint8_t badPixel);
 
       static const uint8_t FRAME_BITS_ = 26;
       static const uint8_t SEND_DELAY_ = 30; // usec
