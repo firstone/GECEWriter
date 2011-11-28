@@ -9,6 +9,7 @@
  *  Revision History:
  *  
  *  NNN - MMM YY - Name - Change
+ *  001 - Nov 11 - firston - Added light count (defaulting to 1)
  *  
  *  Copyright (C) 2011, Erissoft
  *  
@@ -45,16 +46,24 @@ namespace ESoft {
     class StaticColorAnimator : public LightAnimator {
     public:
       StaticColorAnimator(uint8_t brightness, Color color)
-        : color_(color), brightness_(brightness) {} 
+        : color_(color), brightness_(brightness), 
+        curLight_(0), lightCount_(1), done_(false) {} 
 
-      bool isDone() { return true; }
+      StaticColorAnimator(uint8_t brightness, Color color, uint8_t lightCount)
+        : color_(color), brightness_(brightness), 
+        curLight_(0), lightCount_(lightCount), done_(false) {} 
+
+      bool isDone() { return done_; }
       
     protected:
       Light getLight_() {
+        done_ = ++curLight_ >= lightCount_;
         return Light().setColor(color_).setBrightness(brightness_);
       }
         
     private:
+      bool done_;
+      uint8_t lightCount_, curLight_;
       Color color_;
       uint8_t brightness_;
       
