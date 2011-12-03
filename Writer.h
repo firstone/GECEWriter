@@ -33,6 +33,7 @@
 #ifndef __GE_CE_WRITER_WRITER_H__
 #define __GE_CE_WRITER_WRITER_H__
 
+#include <WProgram.h>
 #include <pins_arduino.h>
 
 #include "Light.h"

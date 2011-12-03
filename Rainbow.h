@@ -32,6 +32,8 @@
 #ifndef __GE_CE_WRITER_RAINBOW_H__
 #define __GE_CE_WRITER_RAINBOW_H__
 
+#include <WProgram.h>
+
 #include "Color.h"
 
 namespace ESoft {

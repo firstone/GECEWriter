@@ -32,6 +32,8 @@
 #ifndef __GE_CE_WRITER_ANIMATION_EXECUTOR_H__
 #define __GE_CE_WRITER_ANIMATION_EXECUTOR_H__
 
+#include <WProgram.h>
+
 #include "TrackAnimator.h"
 #include "Writer.h"
 

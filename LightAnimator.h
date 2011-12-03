@@ -32,6 +32,8 @@
 #ifndef __GE_CE_WRITER_LIGHT_ANIMATOR_H__
 #define __GE_CE_WRITER_LIGHT_ANIMATOR_H__
 
+#include <WProgram.h>
+
 #include "Light.h"
 
 namespace ESoft {
