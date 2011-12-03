@@ -31,6 +31,8 @@
  *********************************************************************/
 #include "AnimationExecutor.h"
 
+#include <WProgram.h>
+
 namespace ESoft {
   
   namespace GECEWriter {
