@@ -32,7 +32,7 @@
 #ifndef __GE_CE_WRITER_COLOR_H__
 #define __GE_CE_WRITER_COLOR_H__
 
-#include <WProgram.h>
+#include <Arduino.h>
 
 namespace ESoft {
 

@@ -32,7 +32,7 @@
 #ifndef __GE_CE_WRITER_CPP_DEFS_H__
 #define __GE_CE_WRITER_CPP_DEFS_H__
 
-#include <WProgram.h>
+#include <Arduino.h>
 
 extern "C" void __cxa_pure_virtual();
 

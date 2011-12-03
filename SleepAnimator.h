@@ -32,8 +32,6 @@
 #ifndef __GE_CE_WRITER_SLEEP_ANIMATOR_H__
 #define __GE_CE_WRITER_SLEEP_ANIMATOR_H__
 
-#include <WProgram.h>
-
 #include <Light.h>
 #include <LightAnimator.h>
 
